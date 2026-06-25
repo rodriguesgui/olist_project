@@ -1,0 +1,13 @@
+# Profiles Exemplos - lembre-se de alterar user, password e dbname
+dbt_olist:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: db
+      port: 5432
+      user: your_user
+      password: your_password
+      dbname: your_database
+      schema: analytics
+      threads: 1

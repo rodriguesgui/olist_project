@@ -1,0 +1,112 @@
+version: 2
+
+models:
+  - name: dim_sellers
+    description: "Tabela de Dimensão devendedores com informações dos vendedores"
+    columns:
+      - name: sell_id
+        tests:
+          - unique
+          - not_null
+      - name: sell_zip_code_prefix
+        tests:
+          - not_null
+      - name: city
+        tests:
+          - not_null
+      - name: state
+        tests:
+          - not_null
+  - name: dim_customers
+    description: "Tabela de Dimensão de clientes com informações dos clientes"
+    columns:
+      - name: cust_id
+        tests:
+          - unique
+          - not_null
+      - name: cust_zip_code_prefix
+        tests:
+          - not_null
+      - name: city
+        tests:
+          - not_null
+      - name: state
+        tests:
+          - not_null
+  - name: dim_location
+    description: "Tabela de Dimensão de localização com informações de localização"
+    columns:
+      - name: zip_code_prefix
+        tests:
+          - unique
+          - not_null
+      - name: lat
+        tests:
+          - not_null
+      - name: lng
+        tests:
+          - not_null
+      - name: city
+        tests:
+          - not_null
+      - name: state
+        tests:
+          - not_null
+  - name: dim_products
+    description: "Tabela de Dimensão de produtos com informações dos produtos"
+    columns:
+      - name: prod_id
+        tests:
+          - unique
+          - not_null
+      - name: prod_catg_name
+        tests:
+          - not_null
+  - name: fct_order_items
+    description: "Tabela de Fato de itens de pedidos com informações dos itens dos pedidos a grão de itens"
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_orders')
+              field: ord_id
+      - name: product_id
+        tests:
+          - relationships:
+              to: ref('dim_products')
+              field: prod_id
+      - name: customer_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customers')
+              field: cust_id
+      - name: seller_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_sellers')
+              field: sell_id
+      - name: purchase_date
+        tests:
+          - not_null
+  - name: fct_orders
+    description: "Tabela de Fato de pedidos com informações dos pedidos"
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customers')
+              field: cust_id
+      - name: purchase_date
+        tests:
+          - not_null
+      - name: estimated_delivery_date
+      - name : price
+

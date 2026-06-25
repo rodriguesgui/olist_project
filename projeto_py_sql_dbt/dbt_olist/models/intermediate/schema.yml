@@ -1,0 +1,68 @@
+version: 2
+
+models:
+  - name: int_orders_reviews
+    description: "Tabela intermediária de reviews de pedidos com informações de reviews dos pedidos"
+    columns:
+      - name: rev_id
+        tests:
+          - not_null
+      - name: rev_score
+        tests:
+          - not_null
+          - accepted_values:
+              values: [1, 2, 3, 4, 5]
+      - name: rev_creation_date
+        tests:
+          - not_null
+      - name: ord_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_orders')
+              field: ord_id
+      - name: cust_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_customers')
+              field: cust_id
+      - name: ord_purchase_ts
+        tests:
+          - not_null
+  - name: int_orders_payments_values
+    description: "Tabela intermediária de valores de pagamentos de ordens de compra"
+    columns:
+      - name: ord_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_orders')
+              field: ord_id
+      - name: cust_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_customers')
+              field: cust_id
+      - name: ord_purchase_ts
+        tests:
+          - not_null
+  - name: int_customers_orders
+    description: "Tabela intermediária de clientes e ordens com informações de relacionamento"
+    columns:
+      - name: cust_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_customers')
+              field: cust_id
+      - name: ord_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_orders')
+              field: ord_id
+      - name: ord_purchase_ts
+        tests:
+          - not_null

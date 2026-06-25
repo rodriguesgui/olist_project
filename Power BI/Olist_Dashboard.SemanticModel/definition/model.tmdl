@@ -1,0 +1,33 @@
+model Model
+	culture: pt-BR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: pt-BR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["analytics dim_customers","analytics dim_location","analytics dim_products","analytics dim_sellers","analytics fct_orders","analytics fct_order_items","analytics dim_location_customers","Calendar","Medidas"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table 'analytics dim_customers'
+ref table 'analytics dim_location'
+ref table 'analytics dim_products'
+ref table 'analytics dim_sellers'
+ref table 'analytics fct_orders'
+ref table DateTableTemplate_29beb94c-eb1a-4ab3-8b3f-02a96045f915
+ref table LocalDateTable_ed3aec40-b2f6-4f77-b7f2-31f92c3bd20a
+ref table LocalDateTable_fd59c80a-e8a0-4032-884b-425f8f9bd408
+ref table LocalDateTable_773140c0-901d-4765-8474-91b344668a77
+ref table LocalDateTable_e1495759-8cc9-4125-a558-53768182e208
+ref table 'analytics fct_order_items'
+ref table LocalDateTable_a0225297-4f56-423b-bda7-6592eee1b22a
+ref table 'analytics dim_location_customers'
+ref table Calendar
+ref table LocalDateTable_8221aa95-673c-4cad-93f3-46ca34109d62
+ref table Medidas
+
+ref cultureInfo pt-BR
+

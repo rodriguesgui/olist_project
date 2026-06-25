@@ -1,0 +1,14 @@
+
+    
+    
+
+select
+    ord_id as unique_field,
+    count(*) as n_records
+
+from "olist_database"."analytics"."stg_orders"
+where ord_id is not null
+group by ord_id
+having count(*) > 1
+
+

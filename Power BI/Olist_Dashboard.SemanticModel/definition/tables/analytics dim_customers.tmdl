@@ -1,0 +1,57 @@
+table 'analytics dim_customers'
+	lineageTag: bab7e816-0106-4da8-881d-73f0c87b084e
+
+	column cust_id
+		dataType: string
+		lineageTag: e2ce1502-7ceb-4091-acf9-1abfe20e440d
+		summarizeBy: none
+		sourceColumn: cust_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column cust_unique_id
+		dataType: string
+		lineageTag: 0e9f17e9-333a-4f24-9785-8ac960def4f2
+		summarizeBy: none
+		sourceColumn: cust_unique_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column cust_zip_code_prefix
+		dataType: int64
+		formatString: 0
+		lineageTag: 9e6eb692-d060-4f0f-a166-896dd91666d8
+		summarizeBy: none
+		sourceColumn: cust_zip_code_prefix
+
+		annotation SummarizationSetBy = Automatic
+
+	column city
+		dataType: string
+		lineageTag: 1d9db5fa-9b28-4dbe-875a-1092bd69f9f1
+		summarizeBy: none
+		sourceColumn: city
+
+		annotation SummarizationSetBy = Automatic
+
+	column state
+		dataType: string
+		lineageTag: 5ca02852-cc99-4f59-95b4-878f137c4cf7
+		summarizeBy: none
+		sourceColumn: state
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'analytics dim_customers' = m
+		mode: import
+		source =
+				let
+				    Fonte = PostgreSQL.Database("localhost:5435", "olist_database"),
+				    analytics_dim_customers = Fonte{[Schema="analytics",Item="dim_customers"]}[Data]
+				in
+				    analytics_dim_customers
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

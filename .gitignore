@@ -1,0 +1,20 @@
+# Credenciais
+.env
+profiles.yml
+
+# dbt
+dbt_olist/target/
+dbt_olist/dbt_packages/
+dbt_olist/logs/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Datasets
+datasets/
+
+# Power BI
+*.pbix
+*.pbip
