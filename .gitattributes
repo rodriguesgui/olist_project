@@ -1,1 +1,2 @@
-Power BI/** linguist-vendored=true 
+*.pbip linguist-vendored=true
+*.pbix linguist-vendored=true
