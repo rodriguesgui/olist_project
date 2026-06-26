@@ -1,5 +1,5 @@
   services:
-    # Service 1: The application built from a local Dockerfile
+    # Serviço 1: A aplicação construída a partir de um Dockerfile local
     dbt:
       volumes: 
         - ./projeto_py_sql_dbt:/Olist
@@ -15,7 +15,7 @@
         db:
           condition: service_healthy
 
-    # Service 2: The database service using a pre-built image
+    # Serviço 2: O serviço de banco de dados usando uma imagem pré-construída
     db:
       image: postgres:16-alpine
       restart: always

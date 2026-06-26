@@ -1,7 +1,9 @@
+#Importat bibliotecas
 import pandas as pd
 import os
 from sqlalchemy import create_engine
 
+#Função para ler e nomear os dfs
 def carrega_dados():
     pasta = "datasets"
 
@@ -14,6 +16,7 @@ def carrega_dados():
             
     return dfs
     
+#Função para mover os dados para o database criado dentro de um container Docker
 def dsa_executa_script_sql(dfs):
 
     engine = create_engine('postgresql://dev_olist:password123@localhost:5435/olist_database')

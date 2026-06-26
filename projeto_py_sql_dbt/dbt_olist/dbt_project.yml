@@ -1,16 +1,15 @@
-
-# Name your project! Project names should contain only lowercase characters
-# and underscores. A good package name should reflect your organization's
-# name or the intended use of these models
+# Nomeie seu projeto! Nomes de projeto devem conter apenas caracteres minúsculos
+# e underscores. Um bom nome de pacote deve refletir o nome da sua organização
+# ou o uso pretendido dos modelos
 name: 'dbt_olist'
 version: '1.0.0'
 
-# This setting configures which "profile" dbt uses for this project.
+# Esta configuração define qual "profile" o dbt usa para este projeto.
 profile: 'dbt_olist'
 
-# These configurations specify where dbt should look for different types of files.
-# The `model-paths` config, for example, states that models in this project can be
-# found in the "models/" directory. You probably won't need to change these!
+# Estas configurações especificam onde o dbt deve procurar por diferentes tipos de arquivos.
+# A configuração `model-paths`, por exemplo, indica que os modelos deste projeto podem ser
+# encontrados no diretório "models/". Provavelmente você não precisará alterar isso!
 model-paths: ["models"]
 analysis-paths: ["analyses"]
 test-paths: ["tests"]
@@ -18,19 +17,18 @@ seed-paths: ["seeds"]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
 
-clean-targets:         # directories to be removed by `dbt clean`
+clean-targets:         # diretórios a serem removidos pelo comando `dbt clean`
   - "target"
   - "dbt_packages"
 
 
-# Configuring models
-# Full documentation: https://docs.getdbt.com/docs/configuring-models
+# Configurando modelos
+# Documentação completa: https://docs.getdbt.com/docs/configuring-models
 
-# In this example config, we tell dbt to build all models in the example/
-# directory as views. These settings can be overridden in the individual model
-# files using the `{{ config(...) }}` macro.
+# Neste exemplo de configuração, dizemos ao dbt para construir todos os modelos
+# do diretório example/ como views. Estas configurações podem ser sobrescritas
+# nos arquivos individuais de modelo usando a macro `{{ config(...) }}`.
 models:
   dbt_olist:
     marts:
       +materialized: table
-
