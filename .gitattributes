@@ -1,4 +1,1 @@
-*.pbip linguist-vendored=true
-*.pbip -linguist-detectable
-*.pbix linguist-vendored=true
-*.pbix -linguist-detectable
+target/** linguist-documentation
