@@ -1,0 +1,61 @@
+table 'analytics dim_location_customers'
+	lineageTag: 95a97746-cf60-4e60-8150-250e35f72c38
+
+	column zip_code_prefix
+		dataType: int64
+		formatString: 0
+		lineageTag: 64407548-3e57-442f-8878-3b7a21522836
+		summarizeBy: none
+		sourceColumn: zip_code_prefix
+
+		annotation SummarizationSetBy = Automatic
+
+	column lat
+		dataType: double
+		lineageTag: c9090e0d-730b-4060-9ed2-c7bc1d8a1cfd
+		summarizeBy: none
+		sourceColumn: lat
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column lng
+		dataType: double
+		lineageTag: 31699e71-72fa-4d01-af90-67bf36bcbfcb
+		summarizeBy: none
+		sourceColumn: lng
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column city
+		dataType: string
+		lineageTag: 10fee0fe-21c5-4981-9946-106c8e8e6572
+		summarizeBy: none
+		sourceColumn: city
+
+		annotation SummarizationSetBy = Automatic
+
+	column state
+		dataType: string
+		lineageTag: 041cdfb9-68d2-4cf9-91ce-612e3ebc2642
+		summarizeBy: none
+		sourceColumn: state
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'analytics dim_location_customers' = m
+		mode: import
+		source =
+				let
+				    Fonte = PostgreSQL.Database("localhost:5435", "olist_database"),
+				    analytics_dim_location = Fonte{[Schema="analytics",Item="dim_location"]}[Data]
+				in
+				    analytics_dim_location
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
