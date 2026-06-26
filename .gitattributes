@@ -1,2 +1,8 @@
-target/** linguist-documentation
+# Ignora qualquer arquivo HTML do contador de linguagens
 *.html linguist-detectable=false
+*.html linguist-documentation=false
+
+# Ignora pastas de metadados e relatórios do Power BI e dbt
+*.pbip linguist-documentation
+*.pbi linguist-documentation
+target/** linguist-documentation
